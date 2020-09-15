@@ -1,0 +1,26 @@
+/*
+백준 알고리즘
+2577번 숫자의 개수
+https://www.acmicpc.net/problem/2577
+*/
+
+
+#include <stdio.h>
+
+int main() {
+   int a, b, c;
+   int aa[10] = { 0 };
+   int result;
+
+   scanf("%d %d %d", &a, &b, &c);
+   result = a * b * c;
+   while(result!=0) {
+      aa[result%10]++;
+        result = result / 10;
+   }
+
+   for (int i = 0; i < 10; i++)
+      printf("%d\n", aa[i]);
+   return 0;
+
+}

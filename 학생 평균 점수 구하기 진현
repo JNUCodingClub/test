@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+
+#define STUDENT_NAME_MAX_SIZE 10
+#define STUDENT_NUMBER_MAX_SIZE 5
+
+struct _tagStudent
+{
+    char strName[STUDENT_NAME_MAX_SIZE];
+    int  iScore;
+};
+
+void ScoreInput(_tagStudent tStudent[STUDENT_NUMBER_MAX_SIZE])
+{
+    int i = 0;
+    while(i < STUDENT_NUMBER_MAX_SIZE)
+    {
+        cin >> tStudent[i].iScore;
+
+        if (tStudent[i].iScore % 5 == 0)
+            i++;
+    }
+}
+
+void ScoreCompare(_tagStudent tStudent[STUDENT_NUMBER_MAX_SIZE])
+{
+    for (int i = 0; i < STUDENT_NUMBER_MAX_SIZE; i++)
+    {
+        if (tStudent[i].iScore < 40)
+            tStudent[i].iScore = 40;
+    }
+}
+
+int ScoreAverage(_tagStudent tStudent[STUDENT_NUMBER_MAX_SIZE])
+{
+    int iSum = 0;
+    int iAverage = 0;
+    for (int i = 0; i < STUDENT_NUMBER_MAX_SIZE; i++)
+    {
+        iSum += tStudent[i].iScore;
+    }
+
+    iAverage = iSum / STUDENT_NUMBER_MAX_SIZE;
+
+    return iAverage;
+}
+
+int main()
+{
+    _tagStudent tStudent[STUDENT_NUMBER_MAX_SIZE] = {};
+
+    strcpy_s(tStudent[0].strName, "원섭");
+    strcpy_s(tStudent[1].strName, "세희");
+    strcpy_s(tStudent[2].strName, "상근");
+    strcpy_s(tStudent[3].strName, "숭");
+    strcpy_s(tStudent[4].strName, "강수");
+
+    ScoreInput(&tStudent[STUDENT_NUMBER_MAX_SIZE]);
+    ScoreCompare(&tStudent[STUDENT_NUMBER_MAX_SIZE]);
+
+    cout << ScoreAverage(&tStudent[STUDENT_NUMBER_MAX_SIZE]);
+
+    
+    return 0;
+}

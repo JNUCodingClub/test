@@ -1,0 +1,25 @@
+/*
+3개의 정수를 입력받아 최대값 구하기
+*/
+a=int(input())
+b=int(input())
+c=int(input())
+
+def find(x,y,z):
+    max=x
+    if y>max:
+        x=y
+    if z>max:
+        x=z
+    return x
+
+print(find(a,b,c))
+
+/*
+N개의 정수 입력받기
+/*
+_=input()
+a=list(map(int,input().split()))
+for i in a:
+    print(i)
+print(max(a))

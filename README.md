@@ -1,2 +1,2 @@
-# test
+# JNU Coding Class
  

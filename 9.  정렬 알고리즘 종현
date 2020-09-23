@@ -1,0 +1,136 @@
+/*
+Selection sort
+선택정렬 알고리즘
+*/
+
+static void ssort(int[] b) {
+	int i, j, mj;
+	int mm, tmp;
+	
+	for (i=0; i<b.length; i++) {
+		mm = b[i]; mj = i;
+		for (j=i; j<b.length; j++) {
+			if(b[j] < mm) {
+				mm = b[j]; mj = j;
+				}
+			}
+			tmp = b[i]; b[i]=b[mj]; b[mj]=tmp;
+			ShowArr(b);
+		}
+		return;
+	}
+
+/*
+Bubble sort
+버블정렬 알고리즘
+*/
+
+static void Bsort(int[] b) {
+	for (int last= b.length; last >=1; last--) {
+		for(int i=0; i< last-1;  i++){
+			if(b[i]>b[i+1]){
+				int tmp = b[i]; b[i]=b[i+1]; b[i+1] = tmp;
+				}
+			}
+		}
+	}
+
+/*
+Insertion sort 
+삽입정렬 알고리즘
+*/
+
+static void Isort(int[] b) {
+	for(int i=0; i<b.length; i++) {
+		for(int j=i-1; j>=0; j--) {
+			if(b[i]<b[j])
+				int tmp = b[i];
+				b[i] = b[j];
+				b[j] = tmp;
+			else break;
+			}
+		}
+	}
+
+/*
+Quick sort
+퀵정렬 알고리즘
+*/
+
+static int Partition(int[] b, int s, int e) {
+	int i = s+1, j = e;
+	while (i<=j) {
+		while(b[i]<=b[s]&& i<=e) i++;
+		while(b[j]>b[s]&& j>s) j--;
+		if (i>=j) break;
+		int tmp = b[i]; b[i] = b[j]; b[j] = tmp;
+		}
+	int tmp =b[j]; b[j] = b[s]; b[s] = tmp;
+	return j;
+}
+
+static void quick(int [] b, int s, int e) {
+	if (s>=e) return;
+	int p = Partition(b,s,e);
+	quick(b,s,p-1);
+	quick(b,p+1,e);
+}
+
+static void Qsort(int[] b) {
+	quick(b,0,b.length-1);
+}
+
+
+/*
+Merge sort
+합병정렬 알고리즘
+*/
+
+
+static int[] L, R;
+
+static void divide(int[] b, int s, int e) {
+	int m;
+	if (s >=e) return;
+	m = (s+2)/2;
+	divide(b, s, m);
+	divide(b, m+1, e);
+	merge(b, s, m, e);
+	return;
+}
+
+static void Msort(int[] b) {
+	L = new int[b.length/2+1];
+	R = new int[b.length/2+1];
+	divide(b, 0, b.length-1);
+}
+
+static void merge(int[] b, int s, int m, int e) {
+	int i=0, j, x;
+	x=s; i=0;
+	while(x<=m)
+		L[i++] = b [x++];
+	x = m+1; i = 0;
+	while(x<=e)
+		R[i++] = b[x++];
+		
+	i = 0; j = 0; x = s;
+	while ((i+s<=m) && (j+m+1<=2)) {
+		if (L[i] <= R[j]) {
+			b[x++] = L[i]; i++;
+		}
+		else {
+			b[x++] = R[j]; j++;
+		}
+	}
+	
+	while (i+s<=m)
+		b[x++] = L[i++];
+	while (j+m+1 <= e)
+		b[x++] = R[j++];
+}
+
+/*
+오늘은 O(n^2)정렬인 selection, bubble, insertion sort랑 O(nlogn)정렬인 quick, merge sort 알고리즘을 정리해서 공부했습니다. 
+이정훈 교수님 알고리즘 수업내용 기반으로 작성했고요. 원래 자료구조는 c++ 사용하시는데 이번수업은 java기반으로 개설되어 조금 난감하려나 했지만 꽤많은 부분이 닮아있어 괜찮았습니다.
+*/

@@ -1,0 +1,30 @@
+/*
+OX 퀴즈
+8958번
+https://www.acmicpc.net/problem/8958
+*/
+#include<stdio.h>
+#include<string.h>
+
+int main() {
+	int num, i, j,goal,o;
+	char aa[80];
+	scanf("%d", &num);
+
+	for (i = 0; i < num; i++) 
+    {
+       goal=0,o=1;
+	   scanf("%s", aa);
+		for (j = 0; j < strlen(aa); j++) {
+			if (aa[j] == 'O') 
+            {
+				goal += o;
+				o++;
+			}
+			else
+				o = 1;
+		}
+		printf("%d\n", goal);
+	}
+    return 0;
+}

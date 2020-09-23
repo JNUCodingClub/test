@@ -1,0 +1,69 @@
+/*
+피시방 알바
+1453번
+https://www.acmicpc.net/problem/1453
+*/
+
+#include <iostream>
+#include <climits>
+using namespace std;
+
+#define COMPUTER_MAX_NUMBER 1000
+
+typedef struct _tagComputer
+{
+	bool btable = false;
+}COMPUTER, *PCOMPUTER;
+
+
+int iInputInt()
+{
+	int iInput;
+
+	cin >> iInput;
+
+	if (cin.fail())
+	{
+		cin.clear();
+		cin.ignore(1024, '\n');
+	}
+
+	return iInput;
+}
+
+int iSetComputerTable(PCOMPUTER pComputer, int itable)
+{
+	if (pComputer[itable - 1].btable)
+		return INT_MAX;
+	pComputer[itable - 1].btable = true;
+	return 0;
+}
+
+int main()
+{
+	COMPUTER tComputer[COMPUTER_MAX_NUMBER] = {};
+
+	while (true)
+	{
+		int ireject = 0;
+		int iN = iInputInt(); // 손님의 수
+		if (iN < 0 || iN > 100) // 예외처리
+			break;
+		
+		for (int i = 0; i < iN; i++)
+		{
+			int itable = iInputInt();
+			if (itable <= 100 || itable > 0)
+			{
+				int j = 0;
+				j = iSetComputerTable(tComputer, itable);
+				if (j == INT_MAX)
+					++ireject;
+			}
+		}
+		cout << ireject<< endl;
+		system("pause");
+	}
+
+	return 0;
+}
